@@ -54,6 +54,7 @@ class BlogPost(db.Model):
     img_url = db.Column(db.String(250), nullable=False)
     comments = relationship("Comment", back_populates='parent_post')
 
+
 class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
@@ -74,7 +75,6 @@ def admin_only(function):
             return abort(403)
         else:
             return function(*args, **kwargs)
-
     return decorated_function
 
 
